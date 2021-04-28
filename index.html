@@ -51,7 +51,15 @@
     In parallel, we are also making headway on our image-based approach to rendering rain. Using the concepts from Efros and Freeman’s 2001 texture synthesis via image quilting paper and others, we have implemented an algorithm to perform quilting with rainstreak patches. We have implemented patch-based texture synthesis that is optimized for minimizing texture overlap error and are in the process of implementing the minimum error boundary edges that Efros and Freeman describe as their final improvement. We encountered difficulty finding high quality rain texture files, so we also plan to design our own PNG files to represent a patch of rain. We also invested considerable time into understanding the PatchMatch Barnes et al. 2009 paper, but this seemed tailored for more advanced problems such as inpainting and constrained modification at the cost of extra complexity, so we judged that the image quilting technique would serve as a better starting point. Preliminary texture synthesis results using rain texture files found online will be shown in our video/presentation. We hope to finalize our image-based approach by the end of this week (4/30), so that our entire team can focus on the physics-based approach in the remaining time. To be explicit about how we plan to integrate this image-based rainfall into our overall rendering pipeline, we intend to follow the example of Tatarchuck and Isidoro (2006) and include it as a post-processing component. We are able to artistically control the synthesis process to some extent via configurable options, such as rain direction (which we achieve via rotation), and have plans to explore rendering rainstreaks at different depths by superimposing different synthesized rain textures at different scaling levels.
   </p>
 
-  
+  <h3>Timeline reflection</h3>
+  <p>
+    Reflecting on our project timeline, we deeply underestimated the complexity of getting a functional and feature-rich simulation engine in order to start exploring our rain-scene interaction strategies in the first place. We allotted about a week to do this but it has taken far longer and is still ongoing. However, due to being able to explore different directions in parallel, we are not that far off from our timeline as we are close to finishing the image-based rainfall generation and have started basic physics-based rain simulation in three.js.
+  </p>
+
+  <h3>Presentation</h3>
+  <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQzmpqxCrjcsL5ibJLL63EPaoPyZMgCZOHMPYeLkFHKpa15hyFBwawqYUyZEQSyx7qUNxuD675ImHBJ/embed?start=false&loop=true&delayms=60000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+  <h3>Video</h3>
 
 </body>
 </html>
