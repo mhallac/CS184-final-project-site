@@ -1,0 +1,57 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Rain Rendering</title>
+  <meta name="description" content="CS 184 Final Project">
+
+  <link rel="stylesheet" href="css/styles.css?v=1.0">
+
+</head>
+
+<body>
+  <h1>CS 184 Final Project Milestone: Rendering Realistic Rainfall Milestone</h1>
+  <h2>Ankur Jain, Nick Mecklenburg, Matthew Hallac, Sairanjith (Ron) Thalanki</h2>
+
+  <h3>Overview</h3>
+  <p>
+      In our quest to computationally generate realistic rainfall, we made headway on several key tasks that will enable us to render the images we want. The paper that we’ve been using as our guide, Tatarchuck and Isidoro (2006), simulates rain in both a physics-based manner (for droplets, scattering, and other effects that might require scene interaction) and image-based manner (for rainstreaks). We follow this approach, developing each in parallel, which we will ultimately combine to produce our final images:
+  </p>
+  <ol>
+      <li>Physics-based approach</li>
+      <ul>
+          <li>
+              Our first task is to set up a rendering environment where we can simulate particle physics with meshes. We are simultaneously trying two different platforms to determine which would be appropriate for our use (three.js and project 4).
+          </li>
+      </ul>
+      <li>Image-based approach</li>
+      <ul>
+          <li>
+            To generate realistic rainstreaks in images, we are pursuing texture synthesis. Tatarchuck and Isidoro (2006) mentions dynamic texture synthesis, but since we only wish to render static images, we invest in static texture synthesis approaches, as described further below.
+          </li>
+      </ul>
+  </ol>
+
+  <h3>Three.js progress</h3>
+  <p>
+    For three.js, we implemented a scene where the camera is pointed up at the clouds. The rain is simulated using small points that randomly fall from the clouds. The clouds are generated using an image of a cloud that is sampled many times with each sample being placed at some random rotation. Finally, we added flashes of light in order to simulate the look of lightning. Additionally, we integrated basic camera controls and GLTF scenes.
+  </p>
+
+  <h3>Project 4 integration progress</h3>
+  <p>
+    Another approach we are exploring is representing meshes in the existing project 4 code, and simulating raindrops as particles. For this approach, our goal is to be able to place a car or windshield in the environment, and accurately simulate and visualize raindrops falling on the windshield. We will then post-process the image for thin rain streaks, and add light scattering from mist. So far, we have made significant headway in exploring the codebases for projects 2 and 4, and are working to be able to represent meshes in the project 4 simulation environment as collision objects. Once we are able to represent the objects, we will have to write GLSL shaders for glass and other materials we will want to represent in our environment. The advantage of taking a physics-based approach is that by simulating raindrops as groups of particles, we will be able to get more accurate interactions of the raindrops with each other and the surrounding environment.
+    <br>
+    Of course, we could try to simulate rain without meshes, but our goal was to create scenes that were as realistic as possible. We judged that regardless of the fidelity of our rain, the limited selection of only planes and spheres in project four would greatly impede our realism.
+  </p>
+
+  <h3>Image-based approach: Texture Synthesis</h3>
+  <p>
+    In parallel, we are also making headway on our image-based approach to rendering rain. Using the concepts from Efros and Freeman’s 2001 texture synthesis via image quilting paper and others, we have implemented an algorithm to perform quilting with rainstreak patches. We have implemented patch-based texture synthesis that is optimized for minimizing texture overlap error and are in the process of implementing the minimum error boundary edges that Efros and Freeman describe as their final improvement. We encountered difficulty finding high quality rain texture files, so we also plan to design our own PNG files to represent a patch of rain. We also invested considerable time into understanding the PatchMatch Barnes et al. 2009 paper, but this seemed tailored for more advanced problems such as inpainting and constrained modification at the cost of extra complexity, so we judged that the image quilting technique would serve as a better starting point. Preliminary texture synthesis results using rain texture files found online will be shown in our video/presentation. We hope to finalize our image-based approach by the end of this week (4/30), so that our entire team can focus on the physics-based approach in the remaining time. To be explicit about how we plan to integrate this image-based rainfall into our overall rendering pipeline, we intend to follow the example of Tatarchuck and Isidoro (2006) and include it as a post-processing component. We are able to artistically control the synthesis process to some extent via configurable options, such as rain direction (which we achieve via rotation), and have plans to explore rendering rainstreaks at different depths by superimposing different synthesized rain textures at different scaling levels.
+  </p>
+
+  
+
+</body>
+</html>
